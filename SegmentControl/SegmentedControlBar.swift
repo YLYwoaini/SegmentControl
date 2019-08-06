@@ -161,10 +161,14 @@ class SegmentedControlBar: UIView, UICollectionViewDataSource, UICollectionViewD
                 return
             }
             
-            let leftItem = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as! TitleBarItem
-            let rightItem = collectionView.cellForItem(at: IndexPath(row: index + 1, section: 0)) as! TitleBarItem
-            leftItem.titleLabel.textColor = UIColor.changeRGBColor(color: leftItem.titleLabel.textColor, value: -distance / scrollView.width)
-            rightItem.titleLabel.textColor = UIColor.changeRGBColor(color: rightItem.titleLabel.textColor, value: distance / scrollView.width)
+            let leftItem = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? TitleBarItem
+            let rightItem = collectionView.cellForItem(at: IndexPath(row: index + 1, section: 0)) as? TitleBarItem
+            if let item = leftItem {
+                item.titleLabel.textColor = UIColor.changeRGBColor(color: item.titleLabel.textColor, value: -distance / scrollView.width)
+            }
+            if let item = rightItem {
+                item.titleLabel.textColor = UIColor.changeRGBColor(color: item.titleLabel.textColor, value: distance / scrollView.width)
+            }
         } else {
             let index = Int(scrollView.contentOffset.x / scrollView.frame.width) + 1
             if index >= titles.count || index < 0 {
@@ -188,10 +192,14 @@ class SegmentedControlBar: UIView, UICollectionViewDataSource, UICollectionViewD
                 return
             }
             
-            let leftItem = collectionView.cellForItem(at: IndexPath(row: index - 1, section: 0)) as! TitleBarItem
-            let rightItem = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as! TitleBarItem
-            leftItem.titleLabel.textColor = UIColor.changeRGBColor(color: leftItem.titleLabel.textColor, value: -distance / scrollView.width)
-            rightItem.titleLabel.textColor = UIColor.changeRGBColor(color: rightItem.titleLabel.textColor, value: distance / scrollView.width)
+            let leftItem = collectionView.cellForItem(at: IndexPath(row: index - 1, section: 0)) as? TitleBarItem
+            let rightItem = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? TitleBarItem
+            if let item = leftItem {
+                item.titleLabel.textColor = UIColor.changeRGBColor(color: item.titleLabel.textColor, value: -distance / scrollView.width)
+            }
+            if let item = rightItem {
+                item.titleLabel.textColor = UIColor.changeRGBColor(color: item.titleLabel.textColor, value: distance / scrollView.width)
+            }
         }
     }
     
