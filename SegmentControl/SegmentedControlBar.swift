@@ -28,6 +28,7 @@ class SegmentedControlBar: UIView, UICollectionViewDataSource, UICollectionViewD
             collectionView.reloadData()
             layoutIfNeeded()
             
+            lineView.removeFromSuperview()
             lineView.frame = CGRect(x: orginXArray[firstIndex], y: bounds.height - 2, width: widthArray[firstIndex], height: 2)
             collectionView.addSubview(lineView)
             
@@ -78,7 +79,7 @@ class SegmentedControlBar: UIView, UICollectionViewDataSource, UICollectionViewD
     func configItemAttributes() {
         var orginX = itemSpace
         for string in titles {
-            let size = NSString(string: string).size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)])
+            let size = string.size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)])
             orginXArray.append(orginX)
             widthArray.append(ceil(size.width))
             orginX = orginX + ceil(size.width) + itemSpace
